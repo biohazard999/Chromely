@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Condition="('$(Platform)' == 'x64')">
-    <None Include="@(CefNativeLibsWin64)">
-      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-      <InProject>false</InProject>
-    </None>
-  </ItemGroup>
+  <Target Name="CopyCefAssets" AfterTargets="ResolvePackageAssets" Condition="'$(RuntimeIdentifier)' == 'win-x64' or '$(RuntimeIdentifier)' == 'win7-x64' or '$(RuntimeIdentifier)' == 'win8-x64'or '$(RuntimeIdentifier)' == 'win81-x64' or '$(RuntimeIdentifier)' == 'win10-x64'">
+    <Message Text="Copy CefAssets for win-x64" Importance="high" />
+    <ItemGroup>
+      <None Include="@(CefNativeLocalesWin64)">
+        <Link>locales\%(FileName)%(Extension)</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <Visible>false</Visible>
+        <InProject>false</InProject>
+      </None>
+      <None Include="@(CefNativeSwiftshadersWin64)">
+        <Link>swiftshader\%(FileName)%(Extension)</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <Visible>false</Visible>
+        <InProject>false</InProject>
+      </None>
+    </ItemGroup>
+  </Target>  
 </Project>

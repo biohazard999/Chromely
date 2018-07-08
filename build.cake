@@ -71,7 +71,7 @@ void RestoreCefBinary(string packageName ,string baseUrl = "http://opensource.sp
 
 void RestoreCef(bool force = false)
 {
-    var cefWinVersion = XmlPeek("./src/Chromely.CefGlue.Winapi/Chromely.CefGlue.Winapi.csproj", "/Project/PropertyGroup/Version");
+    var cefWinVersion = XmlPeek("./src/Chromely.CefGlue.Winapi/Chromely.CefGlue.Winapi.csproj", "/Project/PropertyGroup/CefVersion");
     var cefVersion = cefMap[cefWinVersion];
 
     var win32Uri = $"cef_binary_{cefVersion}_windows32_minimal.tar.bz2";
