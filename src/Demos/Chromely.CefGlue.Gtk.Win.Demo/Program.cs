@@ -57,16 +57,15 @@ namespace Chromely.CefGlue.Gtk.Win.Demo
                 // Options 2 - using local resource file handling with default/custom local scheme handler 
                 // Requires - (sample) UseDefaultResourceSchemeHandler("local", string.Empty)
                 //            or register new resource scheme handler - RegisterSchemeHandler("local", string.Empty,  new CustomResourceHandler())
-                // string startUrl = "local://app/chromely.html";
+                string startUrl = "local://app/chromely.html";
 
                 // Options 3 - using file protocol - using default/custom scheme handler for Ajax/Http requests
                 // Requires - (sample) UseDefaultResourceSchemeHandler("local", string.Empty)
                 //            or register new resource handler - RegisterSchemeHandler("local", string.Empty,  new CustomResourceHandler())
                 // Requires - (sample) UseDefaultHttpSchemeHandler("http", "chromely.com")
                 //            or register new http scheme handler - RegisterSchemeHandler("http", "test.com",  new CustomHttpHandler())
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string startUrl = $"file:///{appDirectory}app/chromely_with_ajax.html";
-
+                // string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                // string startUrl = $"file:///{appDirectory}app/chromely.html";
                 ChromelyConfiguration config = ChromelyConfiguration
                                               .Create()
                                               .WithHostTitle("chromely")
@@ -79,6 +78,7 @@ namespace Chromely.CefGlue.Gtk.Win.Demo
                                               .UseDefaultLogger("logs\\chromely_new.log")
                                               .UseDefaultResourceSchemeHandler("local", string.Empty)
                                               .UseDefaultHttpSchemeHandler("http", "chromely.com");
+                                              //.UseDefaultWebsocketHandler(string.Empty, 8181, true);
 
 
                 using (var app = new CefGlueBrowserHost(config))
